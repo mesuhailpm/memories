@@ -1,3 +1,6 @@
+Implememntation of my Memories app
+
+
 Need fixes.
 ## Like button
 First like after a refresh (currently no limit for like) is not reflecting on view
@@ -17,3 +20,4 @@ part2
 main and part1 is having no difference
 
 part 2 is the current one which will be implemented with login auth.
+

@@ -3,6 +3,7 @@ import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from '../actionTypes'
 
 export const getPosts = () => async(dispatch)=>{
     try {
+        console.log('getPost action called')
         const {data} = await api.fetchPosts();
         console.log('data is assigned to data variable; this message is from actions')
         dispatch( {type:FETCH_ALL,payload:data} )
@@ -43,7 +44,8 @@ export const likePost =(id)=> async(dispatch)=>{
 }
 export const deletePost = (idToDelete) => async(dispatch)=>{
     try {
-        api.deletePost(idToDelete)
+        const {data} = await api.deletePost(idToDelete)
+        console.log(data,'is the data after tried to delete')
         dispatch({type:DELETE, payload: idToDelete})
     } catch (error) {
         console.log(error)

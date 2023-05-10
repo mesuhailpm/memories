@@ -3,12 +3,11 @@ import useStyles from "./styles"
 import {useSelector} from "react-redux";
 import {Grid,CircularProgress} from '@mui/material'
 
-export default function Posts({currentId,setCurrentId}){
+export default function Posts({user,currentId,setCurrentId}){
     const classes = useStyles()
+    
     const posts = useSelector((state)=> state.posts);
     console.log(posts,' are posts from posts component')
-
-//    console.log(posts,'posts rendered from Posts component')
     return(
         <div className={classes.mainContainer}>
         {!posts.length ?
@@ -19,9 +18,11 @@ export default function Posts({currentId,setCurrentId}){
                         <Post
                         post={post}
                         setCurrentId={setCurrentId}
+                        user={user}
 
                         />
                     </Grid>
+
                 ))}
             </Grid>
         }        </div>

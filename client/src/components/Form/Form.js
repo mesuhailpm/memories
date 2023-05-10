@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { createPost,getPosts, updatePost } from '../../actions/posts'
 import { useSelector } from 'react-redux'
 
-const  Form = ({currentId,setCurrentId})=> {
+const  Form = ({user,currentId,setCurrentId})=> {
     const dispatch = useDispatch()
     const classes = useStyles()
     const currentPost= useSelector((state)=> currentId? state.posts.find(post=> post._id===currentId)
@@ -14,28 +14,28 @@ const  Form = ({currentId,setCurrentId})=> {
 
     // console.log(state, ' is state from Form component')
     // console.log(currentId, ' is currentpost ID from Form component')
-    console.log(currentPost, ' is currentPost from Form component')
+    // console.log(currentPost, ' is currentPost from Form component')
     const [postData,setPostData] = useState({
-        creator:'',
         title:'',
         message:'',
         tags:'',
-        likeCount:0,
+        likes:[],
         selectedFile:null,
 
     })
-    console.log(postData,' is postData incurrent form')
+    console.log(postData,' is postData in current form')
     const handleSubmit = async (e)=>{
         e.preventDefault()
+
         if(currentId){
-        dispatch(updatePost(currentId,postData))
+        await dispatch(updatePost(currentId,postData))
         }
         else
-        dispatch(createPost(postData))
+        dispatch(createPost({...postData,creator:user.id}))
         clear()
     }
     const clear =()=>{setPostData({
-        creator:'',
+
         title:'',
         message:'',
         tags:''
@@ -43,15 +43,16 @@ const  Form = ({currentId,setCurrentId})=> {
         setCurrentId(0)
     }
 
-    useEffect(()=>{if(currentPost) setPostData(currentPost)},[currentId],[currentPost])
+    useEffect(()=>{if(currentPost) setPostData(currentPost)},[currentId,currentPost])
     return(
         <Paper className={classes.paper}>
-            <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
+            <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant='h6'>
-                    Creating a memorial
+                    {`${currentPost?'Updating':"Creating a"} memory`}
                 </Typography>
-                <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
-                <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
+                {/* <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} /> */}
+                <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value, })} />
+                <Typography variant="contained" fullWidth >{postData.creator+'is creator'} </Typography>
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} multiline rows={4} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
                 <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
                 <div className={classes.fileInput}>

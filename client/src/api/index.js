@@ -1,8 +1,20 @@
 import axios from 'axios'
 
-const url = 'http://localhost:3001/posts'
-export const fetchPosts =()=> axios.get(url);
-export const createPost = (newPost) => axios.post(url,newPost)
-export const updatePost = (id,post)=>axios.patch(`${url}/${id}/`,post)
-export const deletePost = (id)=> axios.delete(`${url}/${id}`)
-export const likePost = (id)=> axios.patch(`${url}/${id}/likepost`)
+const API = axios.create({baseURL:'http://localhost:3001'})
+const token = `${JSON.parse(localStorage.getItem('token'))}`
+const headers = { 'Authorization': `Bearer ${token}` };
+
+
+
+//posts
+export const fetchPosts =()=> API.get('/posts',null,{headers:headers});
+export const createPost = (newPost) => API.post('/post',newPost,{headers:headers})
+export const updatePost = (id,post)=>API.patch(`/posts/${id}/`,post,{headers:headers})
+export const deletePost = (id)=> API.delete(`posts/${id}`,{headers:headers})
+export const likePost = (id)=> API.patch(`posts/${id}/likepost`,null,{headers: headers})
+
+//auths
+
+export const signUp = (credentials)=>API.post('/user/signup',credentials)
+export const signIn = (credentials)=>API.post('/user/signin',credentials)
+export const generateToken =(credentials)=>API.post('/user/token',credentials)
