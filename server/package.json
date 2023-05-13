@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "run": "node index.js",
-    "build": "npm install && npm start",
+    "build": "npm install",
     "lint": "eslint .",
      "test": "mocha"
 
