@@ -19,5 +19,6 @@ part2
 
 main and part1 is having no difference
 
-part 2 is the current one which will be implemented with login auth.
+part 2 is with login auth.
 
+part 3 is current with pagination and search https://www.youtube.com/watch?v=LYWgPSbPDfQ
