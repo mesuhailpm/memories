@@ -12,7 +12,19 @@ export const getPosts = () => async(dispatch)=>{
     }
 
 }
-export const createPost = (postData) => async(dispatch)=>{
+export const getPostsBySearch = (searchQuery) => async (dispatch)=> {
+    try {
+        const {data} = await api.searchPosts(searchQuery)
+        console.log(data.data)
+        dispatch ( {type:FETCH_ALL, payload:data.data})
+
+    } catch (error) {
+        console.log(error)
+
+    }
+}
+export const createPost = (postData) => async (dispatch)=>{
+    console.log(postData,'from actions')
     try {
         const {data} = await api.createPost(postData)
         dispatch({type:CREATE,payload:data})

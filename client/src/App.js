@@ -5,7 +5,7 @@ import Auth from './components/Auth/Auth'
 import Home from './components/Home/Home'
 import {useLocation} from 'react-router-dom'
 import jwtDecode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Navigate } from 'react-router-dom';
 
 import useStyles from './styles'
 import { useEffect, useState } from 'react';
@@ -23,6 +23,7 @@ function App() {
 
 
   const [home,setHome] = useState(true) //home is the landing page data available for all(i,e no authentication)
+  const [auth,setAuth] = useState(false)
 
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -66,23 +67,16 @@ function App() {
 
 //Component
   return (
-      <Container display='flex' maxwidth='lg'>
+      <Container className={classes.app} display='flex' maxwidth='lg'>
         <Nav user={user} setUser={setUser} home={home} setHome={setHome} />
 
         <Routes>
-          <Route path="/auth" element={ <Box sx={{display:'flex', justifyContent: 'center'}}>
-                                 <Auth />
-                                </Box>}/>
-          <Route path ="/" element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId} />
-              }/>
+          <Route path = '/' element={<Navigate to ='/posts'/>}/>
+          <Route path = '/posts'  element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId}/>}/>
+          <Route path = '/posts/search'  element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId}/>}/>
+          <Route path="/auth" element={ !user?<Auth />: <Navigate to = '/'/> }/>
         </Routes>
 
-
-          {/* <Box sx={{display:'flex', justifyContent: 'center'}}>
-            {!home && <Auth signUp={signUp} setSignUp={setSignUp}/>} */}
-
-            {/* {home && <Home currentId={currentId} setCurrentId={setCurrentId} />} */}
-            {/* </Box> */}
 
       </Container>
 

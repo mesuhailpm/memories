@@ -67,9 +67,9 @@ export default function Auth(){
     const handleFail=(error)=>console.log(error)
     return(
     <GoogleOAuthProvider clientId='485615364888-kqqoik35a5lef2r7h0bqsnihmsi5ktv1.apps.googleusercontent.com'>
-        <Paper width='1000px'p={1} sx={{'color':'red','padding':'20px'}} >
-            <Paper className={classes.paper} >
-                <form className={`${classes.root} ${classes.form}`} autoComplete='off' p={3} onSubmit={handleSubmit} >
+        <Container sx={{'color':'red','padding':'20px', justifyContent:'center'}} elevation={6}>
+            <Paper className={classes.paper} sx={{display:'flex', justifyContent: 'center', padding:'25px'}} >
+                <form className={`${classes.form}`} autoComplete='off' p={3} onSubmit={handleSubmit} >
                     {signUp && <Input name ='firstName' label= 'First Name'  handleChange={handleChange} half  autoFocus/>}
                     {signUp && <Input name ='lastName' label= 'Last Name'  handleChange={handleChange} half />}
                     <Input name='email' label= 'Email address' value={formData.email} handleChange={handleChange} />
@@ -77,7 +77,7 @@ export default function Auth(){
                     {signUp && <Input name='confirmPassword' label ='Confirm password' type='password' value={formData.confirmPassword}  handleChange={handleChange} />}
 
 
-                <Button variant='contained' color='primary' className={classes.submit} type='submit'>{`${signUp?'Sign Up':'Sign in'}`}</Button >
+                <Button variant='contained' color='primary' className={classes.submit} type='submit' fullWidth>{`${signUp?'Sign Up':'Sign in'}`}</Button >
                 {!signUp &&
                 < GoogleLogin
                     //clientId='485615364888-jk50cb6bt62h07ekmg3bqc1ti141f570.apps.googleusercontent.com'
@@ -102,14 +102,14 @@ export default function Auth(){
                     {!signUp &&
                         <>
                             <Typography variant='subtitle2'>Don't have an account?
-                                <Button variant ='secondary' color='secondary'onClick={toggle}> Create one now</Button>
+                                <Button variant ='secondary' color='primary'onClick={toggle}> Create one now</Button>
                             </Typography>
                         </>
                     }
                 </form>
 
             </Paper>
-        </Paper>
+        </Container>
 
     </GoogleOAuthProvider>)
 }

@@ -12,7 +12,6 @@ export default makeStyles({appBar: {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '10px 50px',
-  // border:'5px solid',// remove after test,
   '& .css-1cjrmu8-MuiPaper-root-MuiAppBar-root':{
     display:'flex',
     flexDirection:'row',

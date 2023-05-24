@@ -28,7 +28,7 @@ export default function Post({post,currentId,setCurrentId,user}){
                         <Button size="small" color="primary" onClick={handleLike} disabled={!user}> <ThumbUpAlt fontSize="small" />&nbsp;
                         {post.likes.length > 2
                                             ?
-                                    `You and ${post.likes.length-1} others like`
+                                    `You and ${post.likes.length-1} others`
                                     : post.likes.length ===1 ? `${post.likes.length} like`:`${post.likes.length} likes`}
                                     {/* this user liked */}
 
@@ -67,11 +67,8 @@ console.log(post.likes ,' is users who liked')
                     <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                    {/* <Button size="small" color="primary" onClick={handleLike} disabled={!user}> <ThumbUpAlt fontSize="small" /> */}
-                    {/* Likes {post.likes.length} */}
                     {likeComponent}
-                    {/* </Button> */}
-                    <Button size="small" color="primary" onClick={handleDelete}disabled={user && user.id===post.creator?false:true}><Delete fontSize="small" disabled /> Delete</Button>
+                    <Button size="small" color="primary" onClick={handleDelete}disabled={user && user.id === post.creatorId ? false : true }><Delete fontSize="small" disabled /> Delete</Button>
                 </CardActions>
             </Card>
         </div>

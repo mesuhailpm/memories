@@ -21,9 +21,9 @@ export default function Nav({user,setUser,home,setHome}){
 
             <AppBar className={classes.appBar} id ='flex-container' position="static" color="inherit">
 
-              <div className={classes.brandContainer}>
+              <div className={classes.brandContainer} >
 
-                <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center" onClick={()=>setHome(true)}>Memories</Typography>
+                <Typography  className={classes.heading} variant="h2" align="center" onClick={()=>{setHome(true)}} component={Link} to="/">Memories</Typography>
                 <img src={icon} className={classes.image}  alt="icon" height='60' />
 
               </div>

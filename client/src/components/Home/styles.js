@@ -1,52 +1,30 @@
 import { makeStyles } from '@mui/styles'
 
+import { createTheme } from '@mui/system';
+
+const theme = createTheme();
+
 export default makeStyles({
-  media: {
-    height: 0,
-    paddingTop: '56.25%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    backgroundBlendMode: 'darken',
+  root:{
+    border:'5px solid black !important'
   },
-  border: {
-    border: 'solid',
-  },
-  fullHeightCard: {
-    height: '100%',
-  },
-  card: {
+  appBarSearch: {
+    borderRadius: 4,
+    marginBottom: '1rem',
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
-    position: 'relative',
+    padding: '16px',
   },
-  overlay: {
-    position: 'absolute',
-    top: '20px',
-    left: '20px',
-    color: 'white',
+  paginate: {
+    borderRadius: 4,
+    marginTop: '1rem',
+    padding: '16px',
   },
-  overlay2: {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white',
-  },
-  grid: {
-    display: 'flex',
-  },
-  details: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '20px',
-  },
-  title: {
-    padding: '0 16px',
-  },
-  cardActions: {
-    padding: '0 16px 8px 16px',
-    display: 'flex',
-    justifyContent: 'space-between',
+  gridContainer: {
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
+    },
+    '& .css-neb4x5-MuiGrid-root':{
+    padding:'0 !important'
+    }
   },
 });

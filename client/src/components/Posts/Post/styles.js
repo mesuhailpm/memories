@@ -17,8 +17,9 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
+    borderRadius: '10px !important',
+    height: '380px',
+    width: '240px',
     position: 'relative',
   },
   overlay: {

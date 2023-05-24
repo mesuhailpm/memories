@@ -13,6 +13,26 @@ export const getPosts = async (req,res)=>{
 
 }
 
+export const searchPosts =async (req,res) => {
+    const {query,tags} = req.query
+    const title = query.toUpperCase
+
+    try {
+        console.log(req.query)
+        console.log(tags.split(','), title)
+        const posts = await PostMessage.find( { $or: [ { title }, {tags: {$in: tags.split(',')}}] } )
+
+        res.status(201).json({data:posts})
+
+
+
+    } catch (error) {
+        console.log(error)
+
+    }
+
+}
+
 export const createPost = async(req,res)=>{
     console.log('Creating a post')
     console.log(' request is made on url ',req.url,'with req type: ',req.method, 'reqest body is ',req.body)
@@ -33,17 +53,20 @@ export const deletePost = async(req,res)=>{
     const id = req.params.id //postID
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that ID')
     const currentPost = await PostMessage.findById(id)
-    if(currentPost.creator!==userId) return res.status(404).send('Unable to delete other\'s post')
+    if(currentPost.creatorId !== userId ) return res.status(404).send('Unable to delete other\'s post')
     await PostMessage.findByIdAndRemove(id)
     //logging into console
     console.log(' request is made on url ',req.url,'with req type: ',req.method, 'reqest body is ',req.body,'id to delete is ',id)
     res.json({ message: "Post deleted successfully." });
 
 }
-export const updatePost=async(req,res)=>{
-    const {id}= req.params
+export const updatePost = async (req,res)=>{
+    const {id}= req.params //postID
+    const userId = req.userId
     const updatedPost = req.body
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that ID')
+    const currentPost = await PostMessage.findById(id)
+    if (currentPost.creatorId !== userId) return res.status(404).send('Only owner can update the post')
     const updatedPosts = await PostMessage.findByIdAndUpdate(id,updatedPost)
     res.json(updatedPosts)
 

@@ -7,7 +7,7 @@ import {Visibility,VisibilityOff} from '@mui/icons-material'
 export default function Input({name,half,label,type,value,handleChange,setShowPassword,autoFocus}){
     return(
 
-    <Grid item xs={12} sm={half ? 6 : 12}>
+    <Grid item xs={12} sm={half ? 6 : 12} lg={half ? 6 : 12}>
         <TextField
         name={name}
         variant='outlined'
