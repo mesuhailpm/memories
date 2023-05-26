@@ -1,6 +1,2 @@
 node_modules
 node_modules/
-<<<<<<< HEAD
-**/console.log
-=======
->>>>>>> parent of 9d9f8db (edit gitignore to ignore  console.log changes)
