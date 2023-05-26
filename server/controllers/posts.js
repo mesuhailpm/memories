@@ -13,6 +13,26 @@ export const getPosts = async (req,res)=>{
 
 }
 
+export const getPostsByPage = async (req,res) => {
+
+    try {
+        const page = req.query.page
+        console.log(page, ' is page')
+        const postsCount = await PostMessage.count()
+        const limit = 8 //might be dynamical
+        const indexToSkip = (page - 1) * limit //must be dynamical
+        console.log(indexToSkip, 'will be skipped')
+        const posts = await PostMessage.find().skip(indexToSkip).limit(limit)
+        // console.log(posts)
+        res.status(200).json({posts, postsCount})
+
+    } catch (error) {
+        console.log(error)
+
+    }
+
+}
+
 export const searchPosts =async (req,res) => {
     const {query,tags} = req.query
     const title = query.toUpperCase

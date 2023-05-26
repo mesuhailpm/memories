@@ -10,7 +10,7 @@ import { useNavigate,Navigate } from 'react-router-dom';
 import useStyles from './styles'
 import { useEffect, useState } from 'react';
 import {useDispatch} from 'react-redux'
-import {getPosts} from './actions/posts'
+import {getPosts,getPostsByPage} from './actions/posts'
 import { Routes,Route } from 'react-router-dom';
 
 function App() {
@@ -25,13 +25,17 @@ function App() {
   const [home,setHome] = useState(true) //home is the landing page data available for all(i,e no authentication)
   const [auth,setAuth] = useState(false)
 
+  // const [page,setPage] = useState(1)
+
   const classes = useStyles()
   const dispatch = useDispatch()
 
+  const [page,setPage] = useState(1)
+
   useEffect(() => {
-    dispatch(getPosts());
+    dispatch(getPostsByPage(page));
     console.log('useEffect ran inside App.js')
-  }, [dispatch,currentId]);
+  }, [dispatch,currentId,page]);
 
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('profile')))
@@ -72,9 +76,9 @@ function App() {
 
         <Routes>
           <Route path = '/' element={<Navigate to ='/posts'/>}/>
-          <Route path = '/posts'  element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId}/>}/>
-          <Route path = '/posts/search'  element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId}/>}/>
-          <Route path="/auth" element={ !user?<Auth />: <Navigate to = '/'/> }/>
+          <Route path = '/posts'         element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId} page={page} setPage={setPage} />}/>
+          <Route path = '/posts/search'  element ={ <Home user={user} currentId={currentId} setCurrentId = {setCurrentId}/>}/>
+          <Route path = '/auth' element={ !user?<Auth />: <Navigate to = '/'/> }/>
         </Routes>
 
 

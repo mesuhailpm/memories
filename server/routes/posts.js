@@ -4,9 +4,9 @@ import authorize from '../middleware/auth.js'
 
 
 
-import { getPosts,createPost,deletePost,likePost,updatePost,searchPosts } from '../controllers/posts.js'
+import { getPosts,getPostsByPage,createPost,deletePost,likePost,updatePost,searchPosts } from '../controllers/posts.js'
 
-router.get('/',getPosts)
+router.get('/',getPostsByPage)
 router.get('/search',searchPosts)
 router.post('/',authorize,createPost)
 router.delete('/:id',authorize,deletePost)

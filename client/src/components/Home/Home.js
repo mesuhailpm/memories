@@ -11,11 +11,10 @@ import { getPostsBySearch } from "../../actions/posts";
 import useStyles from './styles'
 
 
-export default function Home({user,currentId,setCurrentId}){
+export default function Home({user,currentId,setCurrentId, page, setPage}){
     console.log('rendering home component')
     const [keyword,setKeyword] = useState('')
     const [tags,setTags]= useState([])
-    const [page,setPage] = useState(1)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()

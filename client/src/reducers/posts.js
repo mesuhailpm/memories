@@ -1,10 +1,12 @@
-import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from "../actionTypes";
+import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_POSTS_BY_PAGE } from "../actionTypes";
 
 export default (posts =[],action)=> {
     switch (action.type) {
         case FETCH_ALL:
             console.log('fetching the posts, this is from reducers')
             return action.payload;
+        case FETCH_POSTS_BY_PAGE:
+            return action.payload.posts
         case UPDATE:
             console.log('updating the posts')
             return posts.map((post)=>post._id===action.payload.id ? action.payload:post)

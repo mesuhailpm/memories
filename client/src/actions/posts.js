@@ -1,5 +1,5 @@
 import * as api from '../api/index'
-import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from '../actionTypes'
+import { FETCH_ALL,FETCH_POSTS_BY_PAGE,CREATE,UPDATE,DELETE,LIKE, } from '../actionTypes'
 
 export const getPosts = () => async(dispatch)=>{
     try {
@@ -11,6 +11,18 @@ export const getPosts = () => async(dispatch)=>{
         console.log(error)
     }
 
+}
+
+export const getPostsByPage = (page) => async (dispatch) => {
+    try {
+        const {data} = await api.fetchPostsByPage(page)
+
+        dispatch( {type:FETCH_POSTS_BY_PAGE, payload: data } )
+
+    } catch (error) {
+        console.log(error)
+
+    }
 }
 export const getPostsBySearch = (searchQuery) => async (dispatch)=> {
     try {

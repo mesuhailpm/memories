@@ -8,6 +8,7 @@ const headers = { 'Authorization': `Bearer ${token}` };
 
 //posts
 export const fetchPosts =()=> API.get('/posts',null,{headers:headers})
+export const fetchPostsByPage = (page) => API.get(`posts?page=${page}`,null,{headers:headers})
 export const searchPosts =(searchQuery)=> API.get(`/posts/search?query=${searchQuery.keyword||'none'}&tags=${searchQuery.tags}`,null,{headers:headers})
 export const createPost = (newPost) => API.post('/posts',newPost,{headers:headers})
 export const updatePost = (id,post)=>API.patch(`/posts/${id}/`,post,{headers:headers})
