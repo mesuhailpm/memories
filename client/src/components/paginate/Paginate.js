@@ -2,10 +2,10 @@ import React from 'react'
 import { Pagination, PaginationItem } from '@mui/material'
 import {Link} from 'react-router-dom'
 
-export default function paginate({page,setPage}){
+export default function paginate({page,setPage,totalPagesCount}){
     return(
     <Pagination
-        count={6} //should be dynamical
+        count={totalPagesCount} //should be dynamical
         page={page}
         renderItem={(item)=>(
             <PaginationItem

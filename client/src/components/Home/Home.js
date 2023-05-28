@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import {Typography,Grow,Grid ,Paper,TextField, Button,AppBar} from '@mui/material'
+import {Typography,Grow,Grid ,Paper,TextField, Button,AppBar,CircularProgress,Box} from '@mui/material'
+import {MuiChipsInput} from 'mui-chips-input'
+import { Navigate,useNavigate } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
+import { getPostsBySearch } from "../../actions/posts";
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
 import Paginate from "../paginate/Paginate";
-import {MuiChipsInput} from 'mui-chips-input'
-import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getPostsBySearch } from "../../actions/posts";
 import useStyles from './styles'
 
 
 export default function Home({user,currentId,setCurrentId, page, setPage}){
     console.log('rendering home component')
     const [keyword,setKeyword] = useState('')
-    const [tags,setTags]= useState([])
+    const [tags,setTags] = useState([])
+    const totalPagesCount = useSelector( (state) => state.posts.totalPagesCount )
+    const loading = useSelector( (state) => state.posts.isLoading ? true : false )
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -38,15 +39,17 @@ export default function Home({user,currentId,setCurrentId, page, setPage}){
 
     return(
     <Grow in>
-        <Grid container flexDirection="row" className={classes.gridContainer} spacing={2}>
+        <Grid container flexDirection="row" className={`classes.gridContainer`} spacing={2}>
 
 
-            <Grid item sx={12} md={9}>
+            {loading ? <Box className={classes.loadingContainer} ><CircularProgress size="7rem" /></Box>
+                      :
+              <Grid item sx = {12} md = {12}  lg = {9}>
               <Posts currentId={currentId} setCurrentId={setCurrentId} user={user}/>
 
 
-            </Grid>
-            <Grid item sx={12} md={3}>
+            </Grid>}
+            <Grid item sx={12} md={3} lg ={3} >
               <AppBar position="static" className={classes.appBarSearch} >
                 <TextField variant="filled" color="primary" fullWidth label="Search Memories" value={keyword} onChange={(e)=>setKeyword(e.target.value)} onKeyDown={handleKeyPress}/>
                 <MuiChipsInput
@@ -63,6 +66,7 @@ export default function Home({user,currentId,setCurrentId, page, setPage}){
                   <Paginate
                     page={page}
                     setPage={setPage}
+                    totalPagesCount={totalPagesCount}
                   />
                 </Paper>
                 {user? <Form user={user} currentId={currentId} setCurrentId={setCurrentId}/>

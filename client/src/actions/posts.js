@@ -1,5 +1,5 @@
 import * as api from '../api/index'
-import { FETCH_ALL,FETCH_POSTS_BY_PAGE,CREATE,UPDATE,DELETE,LIKE, } from '../actionTypes'
+import { FETCH_ALL,FETCH_POSTS_BY_PAGE,CREATE,UPDATE,DELETE,LIKE,START_LOADING,STOP_LOADING } from '../actionTypes'
 
 export const getPosts = () => async(dispatch)=>{
     try {
@@ -15,9 +15,11 @@ export const getPosts = () => async(dispatch)=>{
 
 export const getPostsByPage = (page) => async (dispatch) => {
     try {
+        dispatch ( {type:START_LOADING })
         const {data} = await api.fetchPostsByPage(page)
 
-        dispatch( {type:FETCH_POSTS_BY_PAGE, payload: data } )
+        dispatch ( { type:FETCH_POSTS_BY_PAGE, payload: data } )
+        dispatch ( { type:STOP_LOADING })
 
     } catch (error) {
         console.log(error)

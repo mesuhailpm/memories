@@ -43,7 +43,7 @@ export default function Post({post,currentId,setCurrentId,user}){
                 </Button>
 
 
-console.log(post?.creator,' is creator')
+// console.log(post?.creator,' is creator')
 console.log(user?.id,' is userId is logged in')
 console.log(post.likes ,' is users who liked')
 

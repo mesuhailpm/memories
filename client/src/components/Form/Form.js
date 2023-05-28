@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 const  Form = ({user,currentId,setCurrentId})=> {
     const dispatch = useDispatch()
     const classes = useStyles()
-    const currentPost= useSelector((state)=> currentId? state.posts.find(post=> post._id===currentId)
+    const currentPost= useSelector((state)=> currentId? state.posts.posts.find(post=> post._id===currentId)
                                                     : null)
 
     // console.log(state, ' is state from Form component')
@@ -23,7 +23,7 @@ const  Form = ({user,currentId,setCurrentId})=> {
         selectedFile:null,
 
     })
-    console.log(postData,' is postData in current form')
+    // console.log(postData,' is postData in current form')
     const handleSubmit = async (e)=>{
         e.preventDefault()
 

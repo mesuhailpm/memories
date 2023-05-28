@@ -7,12 +7,12 @@ import { LOGOUT } from "../../actionTypes";
 import { useNavigate,Link } from "react-router-dom";
 
 export default function Nav({user,setUser,home,setHome}){
-  console.log(user,'is user')
+    // console.log(user,'is user')
     const classes = useStyles()
     const dispatch=useDispatch()
     const navigate =useNavigate()
 
-    console.log(user, 'from nav component')
+    // console.log(user, 'from nav component')
 
 
 

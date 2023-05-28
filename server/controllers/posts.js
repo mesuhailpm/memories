@@ -20,11 +20,11 @@ export const getPostsByPage = async (req,res) => {
         console.log(page, ' is page')
         const postsCount = await PostMessage.count()
         const limit = 8 //might be dynamical
-        const indexToSkip = (page - 1) * limit //must be dynamical
+        const indexToSkip = (page - 1) * limit 
         console.log(indexToSkip, 'will be skipped')
         const posts = await PostMessage.find().skip(indexToSkip).limit(limit)
         // console.log(posts)
-        res.status(200).json({posts, postsCount})
+        res.status(200).json({posts, totalPagesCount:Math.ceil(postsCount/limit)})
 
     } catch (error) {
         console.log(error)

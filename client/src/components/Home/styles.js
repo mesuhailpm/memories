@@ -5,6 +5,13 @@ import { createTheme } from '@mui/system';
 const theme = createTheme();
 
 export default makeStyles({
+  loadingContainer:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    width:'70%',
+    backgroundColor:'rgba(0,0,0,0.3)'
+  },
   root:{
     border:'5px solid black !important'
   },
