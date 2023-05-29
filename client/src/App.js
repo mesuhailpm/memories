@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import {useDispatch} from 'react-redux'
 import {getPosts,getPostsByPage} from './actions/posts'
 import { Routes,Route } from 'react-router-dom';
+import PostDetails from './components/PostDetails/PostDetails'
 
 function App() {
   const navigate =useNavigate()
@@ -78,6 +79,7 @@ function App() {
           <Route path = '/' element={<Navigate to ='/posts'/>}/>
           <Route path = '/posts'         element ={ <Home user={user} currentId={currentId} setCurrentId={setCurrentId} page={page} setPage={setPage} />}/>
           <Route path = '/posts/search'  element ={ <Home user={user} currentId={currentId} setCurrentId = {setCurrentId}/>}/>
+          <Route path = '/posts/:id' element = { <PostDetails /> } />
           <Route path = '/auth' element={ !user?<Auth />: <Navigate to = '/'/> }/>
         </Routes>
 

@@ -6,11 +6,13 @@ const theme = createTheme();
 
 export default makeStyles({
     paper: {
+        width:'fit-content',
         marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         padding: theme.spacing(2),
+        // border:'2px solid blue' //test
       },
     root: {
         '& .MuiTextField-root': {

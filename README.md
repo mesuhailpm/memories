@@ -26,3 +26,7 @@ part 3 is current with pagination and search https://www.youtube.com/watch?v=LYW
 ### features in part4:
     single post view on click
     recommended posts
+
+## last Comment
+Search with tags or keywork not fetching correctly,
+can't edit post once login without refresh getting 'jwt malformed' in server conosle

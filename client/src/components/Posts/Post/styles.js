@@ -1,4 +1,4 @@
-import { makeStyles } from '@mui/styles'
+import { makeStyles } from "@mui/styles"
 
 export default makeStyles({
   media: {
@@ -50,4 +50,10 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  cardAction:{
+    display:'block',
+    textAlign:'initial',
+    display: 'flow-root !important', //not recommended as per chatGPT explanation was understandable just added as ButtonBase wrpping spoiled my code not tutors code. dont know why
+
+  }
 });

@@ -20,8 +20,8 @@ export default function Auth(){
     const [showPassword,setShowPassword] =useState(false)
     console.log(formData, 'is formData')
 
-    const classes = useStyles
-    const dispatch=useDispatch()
+    const classes = useStyles()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const toggleShowPassword =()=>
     {setShowPassword(prevState=>!prevState)}
@@ -67,7 +67,7 @@ export default function Auth(){
     const handleFail=(error)=>console.log(error)
     return(
     <GoogleOAuthProvider clientId='485615364888-kqqoik35a5lef2r7h0bqsnihmsi5ktv1.apps.googleusercontent.com'>
-        <Container sx={{'color':'red','padding':'20px', justifyContent:'center'}} elevation={6}>
+        <Container component="main" maxWidth="xs" >
             <Paper className={classes.paper} sx={{display:'flex', justifyContent: 'center', padding:'25px'}} >
                 <form className={`${classes.form}`} autoComplete='off' p={3} onSubmit={handleSubmit} >
                     {signUp && <Input name ='firstName' label= 'First Name'  handleChange={handleChange} half  autoFocus/>}
