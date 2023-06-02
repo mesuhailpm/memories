@@ -1,7 +1,9 @@
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 
-const API = axios.create({baseURL:'http://localhost:3001'})
-const token = `${JSON.parse(localStorage.getItem('token'))}`
+const API = axios.create({baseURL:'http://localhost:3001'});
+
+const token = localStorage.getItem('token');
 const headers = { 'Authorization': `Bearer ${token}` };
 
 
@@ -14,7 +16,7 @@ export const searchPosts =(searchQuery)=> API.get(`/posts/search?query=${searchQ
 export const createPost = (newPost) => API.post('/posts',newPost,{headers:headers})
 export const updatePost = (id,post)=>API.patch(`/posts/${id}/`,post,{headers:headers})
 export const deletePost = (id)=> API.delete(`posts/${id}`,{headers:headers})
-export const likePost = (id)=> API.patch(`posts/${id}/likepost`,null,{headers: headers})
+export const likePost = (id)=> {console.log(token); API.patch(`posts/${id}/likepost`,null,{headers: headers})}
 
 //auths
 

@@ -11,7 +11,7 @@ router.get('/:id',fetchPost)
 router.get('/',getPostsByPage)
 router.post('/',authorize,createPost)
 router.delete('/:id',authorize,deletePost)
-router.patch('/:id/',authorize,updatePost)
 router.patch('/:id/likePost',authorize,likePost)
+router.patch('/:id/',authorize,updatePost)
 
 export default router

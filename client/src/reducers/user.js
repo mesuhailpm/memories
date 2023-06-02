@@ -5,7 +5,7 @@ export default (user ={authData:null},action)=> {
         case AUTH:
             localStorage.setItem('profile',JSON.stringify(action.data))
             if(action.data.token)localStorage.setItem('token',JSON.stringify(action.data.token))
-            return {...user, authData:action.data};
+            return {...user, authData:action.data,token:action.data.token};
         case LOGOUT:
             localStorage.clear()
             return {authData:null};

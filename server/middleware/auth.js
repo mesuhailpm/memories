@@ -2,10 +2,12 @@ import jwt from 'jsonwebtoken'
 const secret = 'confidential'
 
 export default async(req,res,next) => {
-    const token = req.headers['authorization'].split(' ')[1]
+    const token = await req.headers['authorization'].split(' ')[1]
+    console.log(req.headers, ' is req.headers')
+    console.log(token,' is token from auth middleware')
 
     try{
-        const decoded = await jwt.verify(token,secret)
+        const decoded = jwt.verify(token,secret)
         console.log(decoded,' is decoded')
         req.userId = decoded?.id
 
