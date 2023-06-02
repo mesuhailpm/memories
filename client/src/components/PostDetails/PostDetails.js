@@ -1,23 +1,46 @@
 import React, {useEffect} from "react";
 import { Card, Typography,Divider, CircularProgress } from "@mui/material";
 import moment from 'moment'
-import {useParams}  from 'react-router-dom'
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useLocation,useParams } from "react-router-dom";
 
 import Recommended from '../Recommended/Recommended'
 import useStyles from './styles'
+import { getPostsBySearch, fetchPost} from "../../actions/posts";
 
 
 export default function PostDetails(){
+    const location = useLocation()
+    const {id} = useParams()
+    const dispatch = useDispatch()
     const classes = useStyles()
-    const {post,isLoading} = useSelector((state)=> state.posts)
+    const { posts,post,isLoading } = useSelector((state)=> state.posts)
     console.log(post)
+
+
+    useEffect(()=>{
+        dispatch( fetchPost (id))
+    },[id])
+
+
+    useEffect(()=>{
+        if(post){
+
+            dispatch( getPostsBySearch ( { keyword:'', tags: post.tags?.join(',') }) )
+        }
+
+    },[post] )
+
+    if(!post) return null;
+
+
 
 
     return  (
 
         <Card className={classes.card}>
-        {isLoading ?<CircularProgress size={5} />:
+        {isLoading ? <CircularProgress size={5} />:
          <div>
             <div className={classes.postDetails}>
                 <div className={classes.section}>
@@ -40,7 +63,11 @@ export default function PostDetails(){
 
             <div className={classes.recommended}>
                 <Typography>You may also like</Typography>
-                <Recommended/>
+                <Recommended
+                    post = {post}
+                    posts ={posts}
+                    recommendedPosts={posts.filter((item)=>item._id !== post._id)}
+                />
 
             </div>
 

@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPostsByPage(page));
-    // console.log('useEffect ran inside App.js')
+    console.log('useEffect ran inside App.js')
   }, [dispatch,currentId,page]);
 
   useEffect(()=>{
@@ -49,6 +49,7 @@ function App() {
     try {
       const token = user?.token
       const decoded = jwtDecode(token)
+      // console.log('usEffect ran around token') //test
       // console.log(decoded)
       // console.log((decoded.exp * 1000) > new Date())
 

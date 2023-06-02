@@ -7,7 +7,7 @@ export default (state = { isLoading:true, posts:[],totalPagesCount:1,post:{} } ,
             console.log(action.payload,' inside reducer')//test
             return action.payload;
         case FETCH_POSTS_BY_SEARCH:
-            return action.payload;
+            return {...state, posts:action.payload}
 
         case FETCH_POSTS_BY_PAGE:
             console.log('fetching the posts, this is from reducers')

@@ -7,7 +7,9 @@ export default function Posts({user,currentId,setCurrentId}){
     const classes = useStyles()
 
     const posts = useSelector((state)=> state.posts.posts || []);
-    console.log(posts,' are posts from posts component')
+    const postsReducer = useSelector((state)=> state.posts || [])
+    console.log(postsReducer,' are full posts inside the reducer I am from posts component')
+    console.log(posts,' are posts inside the reducer I am from posts component')
     return(
         <div className={classes.mainContainer}>
         {!posts.length ?

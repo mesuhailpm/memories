@@ -21,10 +21,10 @@ export default function Home({user,currentId,setCurrentId, page, setPage}){
     const dispatch = useDispatch()
     const classes = useStyles()
 
-    const searchMemories =()=>{
+    const searchMemories = () =>{
       if (keyword.trim() || tags) {
-      dispatch(getPostsBySearch({ keyword : keyword, tags: tags.join(',') }));
-      navigate(`/posts/search?query=${keyword ||'none'}&tags=${tags.join(',')}`)
+      dispatch(getPostsBySearch({ keyword, tags: tags.join(',') }));
+      navigate(`/posts/search?query=${keyword || 'none'}&tags=${tags.join(',')}`);
     }else{
       navigate('/')
     }

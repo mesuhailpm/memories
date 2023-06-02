@@ -45,7 +45,9 @@ const  Form = ({user,currentId,setCurrentId})=> {
         setCurrentId(0)
     }
 
-    useEffect(()=>{if(currentPost) setPostData(currentPost)},[currentId,currentPost])
+    useEffect(()=>{if(currentPost){ setPostData(currentPost)};
+    console.log('useEffect ran inside form and changed Post Data')}
+    ,[currentId,currentPost])
     return(
         <Paper className={classes.paper} >
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>

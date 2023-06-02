@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import PostMessage from "../models/postMessage.js"
 export const getPosts = async (req,res)=>{
+    console.log(req)
     try {
         // res.send('This Worked')
         const postMessages = await PostMessage.find()
@@ -46,20 +47,20 @@ export const getPostsByPage = async (req,res) => {
 
 export const searchPosts =async (req,res) => {
     const {query,tags} = req.query
-    const title = query.toUpperCase
+    const title = query.toLowerCase()
 
     try {
         console.log(req.query)
         console.log(tags.split(','), title)
         const posts = await PostMessage.find( { $or: [ { title }, {tags: {$in: tags.split(',')}}] } )
+        console.log(posts)
 
         res.status(201).json({data:posts})
 
 
 
     } catch (error) {
-        console.log(error)
-
+        res.status(404).json({ message: error.message });
     }
 
 }
