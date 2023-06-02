@@ -48,6 +48,7 @@ const  Form = ({user,currentId,setCurrentId})=> {
     useEffect(()=>{if(currentPost){ setPostData(currentPost)};
     console.log('useEffect ran inside form and changed Post Data')}
     ,[currentId,currentPost])
+
     return(
         <Paper className={classes.paper} >
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
@@ -58,7 +59,7 @@ const  Form = ({user,currentId,setCurrentId})=> {
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value, })} />
                 {/* <Typography variant="contained" fullWidth >{postData.creator+'is creator'} </Typography> */}
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} multiline rows={4} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
-                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
+                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',').map((tag)=> tag.trim()) })} />
                 <div className={classes.fileInput}>
                     <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
                 </div>
