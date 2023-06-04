@@ -16,7 +16,7 @@ DEleting was not updating. solution removed dispath(getPosts()) inside handleDel
 This was beacuse of error code. Solved.
 
 ## Lastly
-i have three branhes in my local project
+i have three branches in my local project
 main -- update: deleted
 part1 -- updatae: deleted
 part2
