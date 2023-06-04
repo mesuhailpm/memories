@@ -29,7 +29,6 @@ export default (state = { isLoading:true, posts:[],totalPagesCount:1,post:{} } ,
         case LIKE:
             console.log('updating the posts by incrementing like')
             return {...state, posts:state.posts.map((post)=>post._id === action.payload._id ? action.payload: post)}
-
         case CREATE:
             return {...state, posts:action.payload}
         case DELETE:

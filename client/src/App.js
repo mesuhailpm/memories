@@ -9,7 +9,7 @@ import { useNavigate,Navigate } from 'react-router-dom';
 
 import useStyles from './styles'
 import { useEffect, useState } from 'react';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {getPosts,getPostsByPage} from './actions/posts'
 import { Routes,Route } from 'react-router-dom';
 import PostDetails from './components/PostDetails/PostDetails'
@@ -29,8 +29,9 @@ function App() {
 
   const classes = useStyles()
   const dispatch = useDispatch()
+  const pageInReducer = useSelector((state)=> state.posts.page)
 
-  const [page,setPage] = useState(1)
+  const [page,setPage] = useState(pageInReducer || 1)
 
   useEffect(() => {
     dispatch(getPostsByPage(page));

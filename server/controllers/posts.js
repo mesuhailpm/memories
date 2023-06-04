@@ -28,7 +28,7 @@ export const fetchPost = async (req,res) => {
 export const getPostsByPage = async (req,res) => {
 
     try {
-        const page = req.query.page
+        const page = req.query.page || 1
         console.log(page, ' is page')
         const postsCount = await PostMessage.count()
         const limit = 8 //might be dynamical
@@ -116,9 +116,9 @@ export const likePost =async(req,res) => {
     if (index === -1) {
         post.likes.push(userId)
         } else {
-        post.likes = post.likes.filter((id)=> id !== userId)}
+        post.likes = post.likes.filter((id)=>id !== userId)}
     const updatedPost = await PostMessage.findByIdAndUpdate(id,post,{new:true})
 
-    console.log(updatedPost)
+    // console.log(updatedPost)
     res.json(updatedPost)
 }
