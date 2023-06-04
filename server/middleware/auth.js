@@ -3,7 +3,7 @@ const secret = 'confidential'
 
 export default async(req,res,next) => {
     const token = await req.headers['authorization'].split(' ')[1]
-    console.log(req.headers, ' is req.headers')
+    // console.log(req.headers, ' is req.headers')
     console.log(token,' is token from auth middleware')
 
     try{

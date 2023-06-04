@@ -5,7 +5,7 @@ import {ThumbUpAlt,ThumbUpAltOutlined,Delete,MoreHoriz} from '@mui/icons-materia
 // import DeleteIcon from '@mui/icons-material/Delete'
 // import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {useDispatch} from 'react-redux'
-import{ fetchPost,deletePost,likePost,getPosts} from '../../../actions/posts'
+import{ fetchPost,deletePost,likePost,getPostsByPage} from '../../../actions/posts'
 import {useNavigate} from 'react-router-dom'
 import moment from 'moment'
 export default function Post({post,currentId,setCurrentId,user}){
@@ -28,7 +28,7 @@ export default function Post({post,currentId,setCurrentId,user}){
 
     const handleLike= () =>{
         dispatch(likePost(post._id))
-        dispatch(getPosts())
+        // dispatch(getPostsByPage())
     }
     const likeComponent =  post.likes.length
                 ?
