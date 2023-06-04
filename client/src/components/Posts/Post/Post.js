@@ -18,8 +18,7 @@ export default function Post({post,currentId,setCurrentId,user}){
     }
 
     const handleLike= async()=>{
-        await dispatch(likePost(post._id))
-        dispatch(getPosts())
+        dispatch(likePost(post._id))
     }
     const likeComponent =  post.likes.length
                 ?

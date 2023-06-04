@@ -28,7 +28,7 @@ const  Form = ({user,currentId,setCurrentId})=> {
         e.preventDefault()
 
         if(currentId){
-        await dispatch(updatePost(currentId, {...postData,creator:user.name}))
+        dispatch(updatePost(currentId, {...postData,creator:user.name}))
         clear()
 
         }

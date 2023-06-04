@@ -14,7 +14,7 @@ import {getPosts,getPostsByPage} from './actions/posts'
 import { Routes,Route } from 'react-router-dom';
 
 function App() {
-  const navigate =useNavigate()
+  const navigate = useNavigate()
   const [currentId, setCurrentId] = useState(0);
   const location = useLocation()
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     dispatch(getPostsByPage(page));
     // console.log('useEffect ran inside App.js')
-  }, [dispatch,currentId,page]);
+  }, [dispatch,page]);
 
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('profile')))
