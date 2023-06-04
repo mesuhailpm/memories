@@ -99,7 +99,7 @@ export const updatePost = async (req,res)=>{
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that ID')
     const currentPost = await PostMessage.findById(id)
     if (currentPost.creatorId !== userId) return res.status(404).send('Only owner can update the post')
-    const updatedPosts = await PostMessage.findByIdAndUpdate(id,updatedPost)
+    const updatedPosts = await PostMessage.findByIdAndUpdate(id,updatedPost,{new:true})
     res.json(updatedPosts)
 
 }
@@ -113,10 +113,11 @@ export const likePost =async(req,res) => {
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that ID')
     let post = await PostMessage.findById(id)
     const index = post.likes.indexOf(userId)
-    let updatedPost
     if (index === -1) {
-        updatedPost = await PostMessage.findByIdAndUpdate(id,{likes:[...post.likes,userId]})
-        } else {updatedPost = await       PostMessage.findByIdAndUpdate(id,{likes:[...post.likes.filter(user=>user!==userId)]})}
+        post.likes.push(userId)
+        } else {
+        post.likes = post.likes.filter((id)=> id !== userId)}
+    const updatedPost = await PostMessage.findByIdAndUpdate(id,post,{new:true})
 
     console.log(updatedPost)
     res.json(updatedPost)

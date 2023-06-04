@@ -24,7 +24,6 @@ function App() {
 
 
   const [home,setHome] = useState(true) //home is the landing page data available for all(i,e no authentication)
-  const [auth,setAuth] = useState(false)
 
   // const [page,setPage] = useState(1)
 
@@ -36,7 +35,7 @@ function App() {
   useEffect(() => {
     dispatch(getPostsByPage(page));
     console.log('useEffect ran inside App.js')
-  }, [dispatch,currentId,page]);
+  }, [dispatch,page]);
 
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('profile')))

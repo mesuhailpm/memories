@@ -44,12 +44,12 @@ export default function Home({user,currentId,setCurrentId, page, setPage}){
 
             {loading ? <Box className={classes.loadingContainer} ><CircularProgress size="7rem" /></Box>
                       :
-              <Grid item sx = {12} md = {12}  lg = {9}>
+              <Grid item xs = {12} md = {12}  lg = {9}>
               <Posts currentId={currentId} setCurrentId={setCurrentId} user={user}/>
 
 
             </Grid>}
-            <Grid item sx={12} md={3} lg ={3} >
+            <Grid item xs={12} md={3} lg ={3} >
               <AppBar position="static" className={classes.appBarSearch} >
                 <TextField variant="filled" color="primary" fullWidth label="Search Memories" value={keyword} onChange={(e)=>setKeyword(e.target.value)} onKeyDown={handleKeyPress}/>
                 <MuiChipsInput

@@ -28,7 +28,6 @@ export default function Post({post,currentId,setCurrentId,user}){
 
     const handleLike= () =>{
         dispatch(likePost(post._id))
-        dispatch(getPosts())
     }
     const likeComponent =  post.likes.length
                 ?
