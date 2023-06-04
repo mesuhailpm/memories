@@ -26,12 +26,11 @@ export default makeStyles({
 
 
 },
-heading: {
-  color: 'rgba(0,183,255, 1)',
-  textDecoration: 'none',
-},
+
 image: {
   marginLeft: '15px',
+  padding: '3px',
+  border:'1px solid grey',
 },
 toolbar: {
   display: 'flex',
@@ -50,6 +49,7 @@ userName: {
 brandContainer: {
   display: 'flex',
   alignItems: 'center',
+
 },
 purple: {
   color: theme.palette.getContrastText(deepPurple[500]),

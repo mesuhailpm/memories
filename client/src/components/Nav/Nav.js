@@ -5,6 +5,8 @@ import icon from '../../images/album.png'
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../../actionTypes";
 import { useNavigate,Link } from "react-router-dom";
+import logoText from '../../images/logotext.png'
+import logoimage from '../../images/logoimage.png'
 
 export default function Nav({user,setUser,home,setHome}){
     // console.log(user,'is user')
@@ -21,12 +23,12 @@ export default function Nav({user,setUser,home,setHome}){
 
             <AppBar className={classes.appBar} id ='flex-container' position="static" color="inherit">
 
-              <div className={classes.brandContainer} >
 
-                <Typography  className={classes.heading} variant="h2" align="center" onClick={()=>{setHome(true)}} component={Link} to="/">Memories</Typography>
-                <img src={icon} className={classes.image}  alt="icon" height='60' />
-
-              </div>
+                <Link to="/" className={classes.brandContainer}>
+                  <img src={logoText}  alt="logo" height='70' onClick={()=>{setHome(true)}} component={Link} to="/"/>
+                  <img src={logoimage} className={classes.image} alt="icon" height='50'/>
+                </Link>
+              
 
               <Toolbar className={classes.toolbar}>
                   {user ?
