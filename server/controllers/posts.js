@@ -103,6 +103,18 @@ export const updatePost = async (req,res)=>{
     res.json(updatedPosts)
 
 }
+export const commentPost = async (req,res) => {
+    const {id} = req.params //postID
+    const userId = req.userId
+    const comment = req.baody
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that ID')
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(id,{comment:})
+
+
+
+}
 export const likePost =async(req,res) => {
     const {id} = req.params//postID
     if (!req.userId)    return res.json({ message: "Unauthenticated" });

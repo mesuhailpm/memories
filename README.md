@@ -23,6 +23,8 @@ part 2 is with login auth.
 
 part 3 is current with pagination and search https://www.youtube.com/watch?v=LYWgPSbPDfQ
 
+part 4 is this branch trying to implement 'comment section'
+
 ### features in part4:
     single post view on click
     recommended posts

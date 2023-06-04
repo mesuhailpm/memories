@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import { Card, Typography,Divider, CircularProgress } from "@mui/material";
+import React, {useEffect, useState} from "react";
+import { Card, Typography,Divider, CircularProgress, TextField, Button } from "@mui/material";
 import moment from 'moment'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,8 @@ import { useLocation,useParams } from "react-router-dom";
 import Recommended from '../Recommended/Recommended'
 import useStyles from './styles'
 import { getPostsBySearch, fetchPost} from "../../actions/posts";
+import Comments from "../Comments/Comments";
+import { commentPost } from "../../actions/posts";
 
 
 export default function PostDetails(){
@@ -16,7 +18,17 @@ export default function PostDetails(){
     const dispatch = useDispatch()
     const classes = useStyles()
     const { posts,post,isLoading } = useSelector((state)=> state.posts)
+    const {user} = useSelector ((state)=> state.user.authData.name)
     console.log(post)
+
+    const [comment,setComment] = useState('');
+    const handleChange = (e) =>{
+        setComment(e.target.value)
+    }
+    const handleSubmit = () =>{
+        dispatch(commentPost(post._id,`${user}: comment`))
+
+    }
 
 
     useEffect(()=>{
@@ -59,6 +71,13 @@ export default function PostDetails(){
                 </div>
 
             </div>
+            <Divider/>
+            <Comments />
+            <form onSubmit={handleSubmit}>
+                <TextField value={comment} onChange={handleChange}/>
+                <Button variant="contained" color = "primary">Comment</Button>
+
+            </form>
             <Divider/>
 
             <div className={classes.recommended}>

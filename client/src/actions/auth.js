@@ -5,7 +5,7 @@ export const signup = (credentials,navigate) => async(dispatch)=>{
     try {
        console.log(credentials, 'is credentials')
        const {data} = await api.signUp(credentials)
-       dispatch({type:AUTH, data:data})
+       dispatch({type:AUTH, payload:data})
 
        navigate('/')
 
@@ -18,7 +18,7 @@ export const signin = (credentials,navigate) => async(dispatch)=>{
     try {
         // console.log(credentials,'is credentials')
         const {data} = await api.signIn(credentials)
-        dispatch({type:AUTH, data:data})
+        dispatch({type:AUTH, payload:data})
 
         navigate('/')
 
