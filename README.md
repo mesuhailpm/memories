@@ -7,17 +7,21 @@ First like after a refresh (currently no limit for like) is not reflecting on vi
 
 added a async await in handleLike seems it sorted
 
+Update: This was wrong solution: Solved with correction.
+
 ## Updates
 changes to post/memory not reflecting always on the view
 DEleting was not updating. solution removed dispath(getPosts()) inside handleDelete function
 
+This was beacuse of error code. Solved.
+
 ## Lastly
 i have three branhes in my local project
-main
-part1
+main -- update: deleted
+part1 -- updatae: deleted
 part2
 
-main and part1 is having no difference
+main and part1 is having no difference -- Not Applicable as deleted
 
 part 2 is with login auth.
 
