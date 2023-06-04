@@ -1,22 +1,25 @@
 import axios from 'axios'
-import { useSelector } from 'react-redux';
 
 const API = axios.create({baseURL:'http://localhost:3001'});
+API.interceptors.request.use((req)=>{
+  req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+  return req
+}
+)
 
-const token = localStorage.getItem('token');
-const headers = { 'Authorization': `Bearer ${token}` };
+
 
 
 
 //posts
-export const fetchPosts =()=> API.get('/posts',null,{headers:headers})
+export const fetchPosts =()=> API.get('/posts')
 export const fetchPost = (id) => API.get(`posts/${id}`)
-export const fetchPostsByPage = (page) => API.get(`posts?page=${page}`,null,{headers:headers})
+export const fetchPostsByPage = (page) => API.get(`posts?page=${page}`)
 export const searchPosts =(searchQuery)=> API.get(`/posts/search?query=${searchQuery.keyword||'none'}&tags=${searchQuery.tags}`)
-export const createPost = (newPost) => API.post('/posts',newPost,{headers:headers})
-export const updatePost = (id,post)=>API.patch(`/posts/${id}/`,post,{headers:headers})
-export const deletePost = (id)=> API.delete(`posts/${id}`,{headers:headers})
-export const likePost = (id)=> {console.log(token); API.patch(`posts/${id}/likepost`,null,{headers: headers})}
+export const createPost = (newPost) => API.post('/posts',newPost)
+export const updatePost = (id,post)=>API.patch(`/posts/${id}/`,post)
+export const deletePost = (id)=> API.delete(`posts/${id}`)
+export const likePost = (id)=> API.patch(`posts/${id}/likepost`)
 
 //auths
 

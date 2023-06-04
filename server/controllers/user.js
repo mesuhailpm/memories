@@ -24,12 +24,12 @@ export const signup = async (req,res)=>{
 export const signin =async (req,res)=>{
     try {
         const {email,password} = req.body
-        console.log(req.body)
+        // console.log(req.body)
         const existingUser = await User.findOne({email})
         const isPasswordCorrect = await bcrypt.compare(password,existingUser.password)
         if (!existingUser || !isPasswordCorrect) return res.status(401).json({message:'Invalid credentials'})
         const token = await jwt.sign({email,id:existingUser._id},secret,{expiresIn:expirationTime})
-        console.log(email,existingUser._id,token,'from server side controller')
+        // console.log(email,existingUser._id,token,'from server side controller')
 
 
         res.status(201).json({email,id:existingUser._id,token,name:existingUser.name})
