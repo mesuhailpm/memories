@@ -1,6 +1,6 @@
 import { AUTH,LOGIN,LOGOUT} from "../actionTypes";
 
-export default (user ={authData:null},action)=> {
+export default (user ={authData:{}},action)=> {
     switch (action.type) {
         case AUTH:
             localStorage.setItem('profile',JSON.stringify(action.payload))
@@ -13,3 +13,7 @@ export default (user ={authData:null},action)=> {
             return user;
     }
 }
+// authData:{}
+// authData:{email:email,id:id, token: 2472yu, name: username}
+// 
+// 

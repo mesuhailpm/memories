@@ -18,14 +18,16 @@ export default function PostDetails(){
     const dispatch = useDispatch()
     const classes = useStyles()
     const { posts,post,isLoading } = useSelector((state)=> state.posts)
-    const {user} = useSelector ((state)=> state.user.authData.name)
+    const user = useSelector ((state)=> state.user?.authData?.name)
     console.log(post)
 
     const [comment,setComment] = useState('');
     const handleChange = (e) =>{
         setComment(e.target.value)
     }
-    const handleSubmit = () =>{
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        console.log(user,' added comment ',comment)
         dispatch(commentPost(post._id,`${user}: comment`))
 
     }
@@ -75,7 +77,7 @@ export default function PostDetails(){
             <Comments />
             <form onSubmit={handleSubmit}>
                 <TextField value={comment} onChange={handleChange}/>
-                <Button variant="contained" color = "primary">Comment</Button>
+                <Button variant="contained" color = "primary" type="submit">Comment</Button>
 
             </form>
             <Divider/>

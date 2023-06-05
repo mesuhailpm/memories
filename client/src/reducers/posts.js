@@ -1,4 +1,4 @@
-import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_POSTS_BY_PAGE, START_LOADING, STOP_LOADING,FETCH_SINGLE_POST, FETCH_POSTS_BY_SEARCH } from "../actionTypes";
+import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_POSTS_BY_PAGE, START_LOADING, STOP_LOADING,FETCH_SINGLE_POST, FETCH_POSTS_BY_SEARCH,COMMENT } from "../actionTypes";
 
 export default (state = { isLoading:true, posts:[],totalPagesCount:1,post:{} } ,action)=> {
     switch (action.type) {
@@ -21,7 +21,8 @@ export default (state = { isLoading:true, posts:[],totalPagesCount:1,post:{} } ,
 
         case STOP_LOADING:
             return {...state, isLoading:false}
-
+        case COMMENT:
+            return {...state, post: {...state.post,comments:action.payload} }
 
         case UPDATE:
             console.log('updating the posts')
