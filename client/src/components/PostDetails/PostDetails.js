@@ -5,11 +5,13 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation,useParams } from "react-router-dom";
 
+
 import Recommended from '../Recommended/Recommended'
 import useStyles from './styles'
 import { getPostsBySearch, fetchPost} from "../../actions/posts";
 import Comments from "../Comments/Comments";
 import { commentPost } from "../../actions/posts";
+import {SETUSER} from "../../actionTypes"
 
 
 export default function PostDetails(){
@@ -18,20 +20,24 @@ export default function PostDetails(){
     const dispatch = useDispatch()
     const classes = useStyles()
     const { posts,post,isLoading } = useSelector((state)=> state.posts)
-    const user = useSelector ((state)=> state.user?.authData?.name)
+    // const user =  useSelector ((state)=> state.user ? state.user?.authData?.name: JSON.parse(localStorage.getItem()).name)
+    const user =  useSelector ((state)=> state.user?.authData?.name)
     console.log(post)
 
     const [comment,setComment] = useState('');
-    const handleChange = (e) =>{
+    const handleChange = async(e) =>{
         setComment(e.target.value)
     }
+
     const handleSubmit = (e) =>{
         e.preventDefault()
-        console.log(user,' added comment ',comment)
-        dispatch(commentPost(post._id,`${user}: comment`))
+        const formattedComment = `${user} ${comment}`
+        dispatch(commentPost(post._id, formattedComment))
 
     }
-
+    useEffect(()=>{
+        dispatch( {type: SETUSER})
+    },[])
 
     useEffect(()=>{
         dispatch( fetchPost (id))
@@ -40,8 +46,7 @@ export default function PostDetails(){
 
     useEffect(()=>{
         if(post){
-
-            dispatch( getPostsBySearch ( { keyword:'', tags: post.tags?.join(',') }) )
+        dispatch( getPostsBySearch ( { keyword:'', tags: post.tags?.join(',') }) )
         }
 
     },[post] )

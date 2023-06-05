@@ -93,6 +93,8 @@ export const commentPost = (id,comment) => async (dispatch) =>{
         const {data} = await api.commentPost(id,comment)
         dispatch ( {type:COMMENT, payload:data})
 
+        return data // as per tutor data.comments
+
     } catch (error) {
         console.log(error)
 

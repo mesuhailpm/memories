@@ -1,6 +1,7 @@
 import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_POSTS_BY_PAGE, START_LOADING, STOP_LOADING,FETCH_SINGLE_POST, FETCH_POSTS_BY_SEARCH,COMMENT } from "../actionTypes";
 
 export default (state = { isLoading:true, posts:[],totalPagesCount:1,post:{} } ,action)=> {
+    
     switch (action.type) {
         case FETCH_ALL:
             console.log('fetching the posts, this is from reducers')

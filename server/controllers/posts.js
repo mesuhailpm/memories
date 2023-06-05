@@ -104,25 +104,28 @@ export const updatePost = async (req,res)=>{
 
 }
 export const commentPost = async (req,res) => {
+    console.log('hello ',req.body.comment)
 
-    try{
+    // try{
 
         const {id} = req.params //postID
         const userId = req.userId
-        const comment = req.body
-    
+        const {comment} = req.body
+
         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that ID')
-    
-        const idToBeUpdated = await PostMessage.findById(id)
-    
-        idToBeUpdated.comments.push(comment)
-    
-        idToBeUpdated.save()
-        res.status(201).json(idToBeUpdated.comments)
-    }
-    catch(error){
-        console.log(error)
-    }
+
+        const post = await PostMessage.findById(id)
+        if (!post) return res.status(404).send('No post found');
+
+
+        post.comments.push(comment)
+
+        const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+        res.status(201).json(updatedPost.comments)
+    // }
+    // catch(error){
+    //     res.status(401).json({message:'something went wrong'})
+    // }
 
 
 

@@ -18,7 +18,7 @@ function App() {
   const navigate =useNavigate()
   const [currentId, setCurrentId] = useState(0);
   const location = useLocation()
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')) || {name:''});
 
   // console.log(user, ' is the user state; this is from App')
 

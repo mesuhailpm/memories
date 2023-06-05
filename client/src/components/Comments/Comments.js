@@ -4,14 +4,15 @@ import { COMMENT } from "../../actionTypes"
 
 const Comments = () => {
     const {post} = useSelector((state)=>state.posts)
+    console.log('this is form comments components, ',post.comments)
 
     if (!post.comments) return null
 
 
     return (
         <>
-        {post.comments.map((comment)=>(
-            <p>{comment}</p>
+        {post.comments.map((comment,i)=>(
+            <p key={i}>{comment}{i}</p>
         ))}
 
         </>

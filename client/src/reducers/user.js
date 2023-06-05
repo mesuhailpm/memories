@@ -1,4 +1,4 @@
-import { AUTH,LOGIN,LOGOUT} from "../actionTypes";
+import { AUTH,SETUSER,LOGOUT} from "../actionTypes";
 
 export default (user ={authData:{}},action)=> {
     switch (action.type) {
@@ -9,11 +9,13 @@ export default (user ={authData:{}},action)=> {
         case LOGOUT:
             localStorage.clear()
             return {authData:null};
+        case SETUSER:
+            return {authData: JSON.parse(localStorage.getItem('profile')),token: JSON.parse(localStorage.getItem('token'))}
         default:
             return user;
     }
 }
 // authData:{}
 // authData:{email:email,id:id, token: 2472yu, name: username}
-// 
-// 
+//
+//
