@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Card, Typography,Divider, CircularProgress, TextField, Button } from "@mui/material";
+import { Card, Typography,Divider, CircularProgress, TextField, Button, Grid } from "@mui/material";
 import moment from 'moment'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import { useLocation,useParams } from "react-router-dom";
 import Recommended from '../Recommended/Recommended'
 import useStyles from './styles'
 import { getPostsBySearch, fetchPost} from "../../actions/posts";
-import Comments from "../Comments/Comments";
+import Comments from "./Comments";
 import { commentPost } from "../../actions/posts";
 import {SETUSER} from "../../actionTypes"
 
@@ -31,8 +31,12 @@ export default function PostDetails(){
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const formattedComment = `${user} ${comment}`
+        if (comment.length < 1)
+        { return;}
+        else
+        {const formattedComment = `${user}: ${comment}`
         dispatch(commentPost(post._id, formattedComment))
+        setComment('')}
 
     }
     useEffect(()=>{
@@ -69,8 +73,6 @@ export default function PostDetails(){
                     <Typography variant="subtitle1" gutterBottom>{moment(post.createdAt).fromNow()}</Typography>
                     <Typography variant="h5" gutterBottom>{post.message}</Typography>
                     <Typography variant="h6"> {post.likes?.length ? `${post.likes.length} ${post.length > 1 ? 'likes':'like' }`:'No likes'}</Typography>
-                    <Divider/>
-                    <Typography>Comments coming soon...</Typography>
                 </div>
 
                 <div className={classes.imageSection}>
@@ -79,16 +81,21 @@ export default function PostDetails(){
 
             </div>
             <Divider/>
-            <Comments />
-            <form onSubmit={handleSubmit}>
-                <TextField value={comment} onChange={handleChange}/>
-                <Button variant="contained" color = "primary" type="submit">Comment</Button>
+            <Grid container className={classes.commentsOuterContainer} >
+                <Comments />
+                <Grid item xs ={12} md={4}>
+                <Typography margin="1rem">{user && 'Write a comment'}</Typography>
+                <form onSubmit={handleSubmit} className={classes.form}>
+                    <TextField value={comment} onChange={handleChange} multiline maxRows="4" helperText="minimum 3 characters"/>
+                    <Button variant="contained" color = "primary" type="submit" disabled={!user || (comment.length <3)}>Comment</Button>
 
-            </form>
+                </form>
+                </Grid>
+            </Grid >
             <Divider/>
 
             <div className={classes.recommended}>
-                <Typography>You may also like</Typography>
+                <Typography  variant="h6">You may also like</Typography>
                 <Recommended
                     post = {post}
                     posts ={posts}

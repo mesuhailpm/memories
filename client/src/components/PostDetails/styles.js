@@ -24,6 +24,30 @@ export default makeStyles({
         justifyContent:'space-between',
         borderRadius:'15px',
         justifyContent:'space-between'
+    },
+    commentsOuterContainer:{
+        display:'flex',
+        justifyContent:'space-between',
+        margin:'1rem 0',
+        border:'2px solid'
+    },
+    commentsInnerContainer:{
+        maxHeight: '200px',
+        border:'2px solid',
+        overFlowY:'auto',
+        marginRight: '30px',
+
+    },
+    form:{
+        display:'flex',
+        flexDirection:'column',
+
+    },
+    recommended:{
+        margin:'1rem',
+        '& h6':{
+            margin:'1rem'
+        }
     }
 
 
