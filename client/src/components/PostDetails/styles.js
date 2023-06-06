@@ -29,13 +29,15 @@ export default makeStyles({
         display:'flex',
         justifyContent:'space-between',
         margin:'1rem 0',
-        border:'2px solid'
+        // border:'2px solid' //test
     },
     commentsInnerContainer:{
         maxHeight: '200px',
-        border:'2px solid',
-        overFlowY:'auto',
+        width: '600px',
+        // border:'2px solid',// test
+        overflowY:'auto',
         marginRight: '30px',
+        padding: '1rem'
 
     },
     form:{

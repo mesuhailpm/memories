@@ -18,7 +18,6 @@ export default function Input({name,half,label,type,value,handleChange,setShowPa
         value={value}
         autoFocus={autoFocus}
         fullWidth
-        gutterBottom
         InputProps={ name ==='password' ?
                     {endAdornment:<InputAdornment position="end" onClick={()=>setShowPassword((prevState)=>!prevState)}>
                         <IconButton>

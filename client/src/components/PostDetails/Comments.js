@@ -14,13 +14,11 @@ const Comments = () => {
 
 
     return (
-        <Box xs={12} md={7} margin="0 1rem" className={classes.commentsInnerContainer}>
-            <Typography variant="h4" color="primary" margin="1rem" >Comments</Typography> 
+        <>
             {post.comments.map((comment,i)=>(
-                <Typography key={i} variant="body1"><strong>{comment.split(':')[0]}</strong>:{comment.split(':')[1]}</Typography>
+                <Typography key={i} variant="body1" borderBottom="0.1px solid gray"><strong>{comment.split(':')[0]}</strong>:{comment.split(':')[1]}</Typography>
         ))}
-
-        </Box>
+        </>
 
     )
 }

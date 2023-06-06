@@ -12,6 +12,7 @@ import { getPostsBySearch, fetchPost} from "../../actions/posts";
 import Comments from "./Comments";
 import { commentPost } from "../../actions/posts";
 import {SETUSER} from "../../actionTypes"
+import { Box } from "@mui/system";
 
 
 export default function PostDetails(){
@@ -81,17 +82,20 @@ export default function PostDetails(){
 
             </div>
             <Divider/>
-            <Grid container className={classes.commentsOuterContainer} >
-                <Comments />
-                <Grid item xs ={12} md={4}>
-                <Typography margin="1rem">{user && 'Write a comment'}</Typography>
-                <form onSubmit={handleSubmit} className={classes.form}>
+            <Box className={classes.commentsOuterContainer} >
+                <Box  xs= {12} md={8} className={classes.commentsInnerContainer}>
+                    <Typography variant="h4" color="primary" margin="1rem" >Comments</Typography>
+                    <Comments />
+                </Box>
+                <Box  xs ={12} md={8}>
+                    <Typography margin="1rem">{user && 'Write a comment'}</Typography>
+                    <form onSubmit={handleSubmit} className={classes.form}>
                     <TextField value={comment} onChange={handleChange} multiline maxRows="4" helperText="minimum 3 characters"/>
                     <Button variant="contained" color = "primary" type="submit" disabled={!user || (comment.length <3)}>Comment</Button>
 
                 </form>
-                </Grid>
-            </Grid >
+                </Box>
+            </Box >
             <Divider/>
 
             <div className={classes.recommended}>
