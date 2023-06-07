@@ -45,7 +45,7 @@ export default function Auth(){
 
     const toggle=(e)=>{
         e.preventDefault()
-        // console.log(signUp)
+        console.log(signUp)
         setSignUp(prevState=>!prevState)
         setFormData(initialForm)
         setShowPassword(false)
@@ -58,7 +58,7 @@ export default function Auth(){
             // const {name,email,picture,sub} = decodedData
 
             // dispatch ({type:AUTH,data:decodedData})
-            // console.log(response)
+            console.log(response)
         } catch (error) {
             console.log(error)
 

@@ -23,8 +23,8 @@ export default function Home({user,currentId,setCurrentId, page, setPage}){
 
     const searchMemories = () =>{
       if (keyword.trim() || tags) {
-      dispatch(getPostsBySearch({ keyword, tags: tags.join(',') }));
-      navigate(`/posts/search?query=${keyword || 'none'}&tags=${tags.join(',')}`);
+      dispatch(getPostsBySearch({ keyword, tags: tags.length ? tags.join(',') : 'none' }));
+      navigate(`/posts/search?query=${keyword || 'none'}&tags=${tags.length ? tags.join(','): 'none'}`);
     }else{
       navigate('/')
     }

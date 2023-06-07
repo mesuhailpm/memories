@@ -13,7 +13,8 @@ export default (state = { isLoading:true, posts:[],totalPagesCount:1,post:{} } ,
         case FETCH_POSTS_BY_PAGE:
             console.log('fetching the posts, this is from reducers')
             console.log(action.payload.posts,' inside reducer')//test
-            return {...state, posts:action.payload.posts,totalPagesCount:action.payload.totalPagesCount}
+            localStorage.setItem('page',JSON.stringify(action.payload.page))
+            return {...state, posts:action.payload.posts,totalPagesCount:action.payload.totalPagesCount, page:action.payload.page}
         case FETCH_SINGLE_POST:
             return {...state, post:action.payload};
 

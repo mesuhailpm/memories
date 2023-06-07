@@ -51,9 +51,9 @@ export default function Post({post,currentId,setCurrentId,user}){
                 </Button>
 
 
-// console.log(post?.creator,' is creator')//tes
-// console.log(user?.id,' is userId is logged in') //test
-// console.log(post.likes ,' is users who liked') //test
+console.log(post?.creator,' is creator')//tes
+console.log(user?.id,' is userId is logged in') //test
+console.log(post.likes ,' is users who liked') //test
 
 
     return(

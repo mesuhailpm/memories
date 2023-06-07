@@ -43,7 +43,7 @@ export const getPostsByPage = (page) => async (dispatch) => {
     }
 }
 export const getPostsBySearch = (searchQuery) => async (dispatch)=> {
-    console.log('hello', '', searchQuery)
+    console.log('hello ', searchQuery)
     try {
         dispatch( {type:START_LOADING})
         const {data} = await api.searchPosts(searchQuery)

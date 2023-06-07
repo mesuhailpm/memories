@@ -35,8 +35,8 @@ export const getPostsByPage = async (req,res) => {
         const indexToSkip = (page - 1) * limit
         console.log(indexToSkip, 'will be skipped')
         const posts = await PostMessage.find().skip(indexToSkip).limit(limit)
-        // console.log(posts)
-        res.status(200).json({posts, totalPagesCount:Math.ceil(postsCount/limit)})
+        console.log(posts)
+        res.status(200).json({page,posts, totalPagesCount:Math.ceil(postsCount/limit)})
 
     } catch (error) {
         console.log(error)
@@ -47,13 +47,15 @@ export const getPostsByPage = async (req,res) => {
 
 export const searchPosts =async (req,res) => {
     const {query,tags} = req.query
-    const title = query.toLowerCase()
+    const title = new RegExp(query, "i");
 
     try {
         console.log(req.query)
         console.log(tags.split(','), title)
-        const posts = await PostMessage.find( { $or: [ { title }, {tags: {$in: tags.split(',')}}] } )
-        console.log(posts)
+        // const posts = await PostMessage.find( { $or: [ { title }, {tags: {$in: tags.split(',')}}] } )
+        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
+
+        console.log(posts,'  are posts after search')
 
         res.status(201).json({data:posts})
 
@@ -147,6 +149,6 @@ export const likePost =async(req,res) => {
         post.likes = post.likes.filter((id)=>id !== userId)}
     const updatedPost = await PostMessage.findByIdAndUpdate(id,post,{new:true})
 
-    // console.log(updatedPost)
+    console.log(updatedPost)
     res.json(updatedPost)
 }

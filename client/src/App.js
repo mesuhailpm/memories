@@ -20,7 +20,7 @@ function App() {
   const location = useLocation()
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')) || {name:''});
 
-  // console.log(user, ' is the user state; this is from App')
+  console.log(user, ' is the user state; this is from App')
 
 
   const [home,setHome] = useState(true) //home is the landing page data available for all(i,e no authentication)
@@ -29,9 +29,9 @@ function App() {
 
   const classes = useStyles()
   const dispatch = useDispatch()
-  const pageInReducer = useSelector((state)=> state.posts.page)
 
-  const [page,setPage] = useState(pageInReducer || 1)
+  const page = useSelector((state)=> state.posts.page || Number(JSON.parse(localStorage.getItem('page'))) || 1)
+  const setPage = (number) => {dispatch(getPostsByPage(number))}
 
   useEffect(() => {
     dispatch(getPostsByPage(page));
@@ -40,7 +40,7 @@ function App() {
 
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('profile')))
-    console.log('useEffect ran', 'with ',user)
+    console.log('useEffect ran', 'with ',user) //test 
 
 
   },[location,home])
@@ -49,12 +49,12 @@ function App() {
     try {
       const token = user?.token
       const decoded = jwtDecode(token)
-      // console.log('usEffect ran around token') //test
-      // console.log(decoded)
-      // console.log((decoded.exp * 1000) > new Date())
+      console.log('usEffect ran around token') //test
+      console.log(decoded)
+      console.log((decoded.exp * 1000) > new Date())
 
       if (decoded.exp * 1000 < new Date()){
-        // console.log('token expired')
+        console.log('token expired')
         dispatch({type:'LOGOUT'})
           navigate('/auth')
           setUser(null)

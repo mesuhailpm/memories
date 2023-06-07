@@ -1,7 +1,20 @@
 import { createTheme } from "@mui/system";
+
 import { makeStyles } from "@mui/styles";
 
-export default makeStyles({
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: "orange !important ", 
+      },
+    },
+  });
+  export default makeStyles({
+    backIcon:{
+        backgroundColor:theme.palette.primary.main,
+        margin: '1rem 0 !important'
+        
+    },
     postDetails:{
         display:'flex'
     },

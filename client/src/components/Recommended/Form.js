@@ -12,7 +12,7 @@ const  Form = ({user,currentId,setCurrentId})=> {
     const currentPost= useSelector((state)=> currentId? state.posts.posts.find(post=> post._id===currentId)
                                                     : null)
 
-    console.log(currentId, ' is currentpost ID from Form component')
+    console.log(currentId, ' is currentId ID from Form component')
     console.log(currentPost, ' is currentPost from Form component')
     const [postData,setPostData] = useState({
         title:'',
@@ -44,15 +44,15 @@ const  Form = ({user,currentId,setCurrentId})=> {
         setCurrentId(0)
     }
 
-    useEffect(()=>{if(currentPost){ setPostData(currentPost)};
+    useEffect(()=>{if(conso){ setPostData(conso)};
     console.log('useEffect ran inside form and changed Post Data')}
-    ,[currentId,currentPost])
+    ,[currentId,conso])
 
     return(
         <Paper className={classes.paper} >
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant='h6'>
-                    {`${currentPost?'Updating':"Creating a"} memory`}
+                    {`${conso?'Updating':"Creating a"} memory`}
                 </Typography>
                 {/* <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} /> */}
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value, })} />

@@ -16,7 +16,7 @@ export const signup = (credentials,navigate) => async(dispatch)=>{
 
 export const signin = (credentials,navigate) => async(dispatch)=>{
     try {
-        // console.log(credentials,'is credentials')
+        console.log(credentials,'is credentials')
         const {data} = await api.signIn(credentials)
         dispatch({type:AUTH, payload:data})
 
@@ -31,7 +31,7 @@ export const signin = (credentials,navigate) => async(dispatch)=>{
 export const generateToken =(decodedData,navigate)=>async (dispatch)=>{
 
     try {
-        // console.log( ' is decoded data  is ',decodedData)
+        console.log( ' is decoded data  is ',decodedData)
 
         const {data} = await api.generateToken(decodedData)
         console.log(data,'is data from backend check if tokeb is available')
@@ -39,7 +39,7 @@ export const generateToken =(decodedData,navigate)=>async (dispatch)=>{
         dispatch({type:AUTH,payload:data})
         navigate('/')
 
-        // console.log(data)
+        console.log(data)
     } catch (error) {
         console.log(error)
 

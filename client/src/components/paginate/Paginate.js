@@ -6,7 +6,7 @@ export default function paginate({page,setPage,totalPagesCount}){
     return(
     <Pagination
         count={totalPagesCount} //should be dynamical
-        page={page}
+        page={Number(page)} // otherwise go to page 11 once clicked  on next page
         renderItem={(item)=>(
             <PaginationItem
             {...item}

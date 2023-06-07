@@ -2,21 +2,23 @@ import React from "react";
 import { AppBar,Typography, Button, Toolbar, Avatar } from '@mui/material'
 import useStyles from'./styles'
 import icon from '../../images/album.png'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT } from "../../actionTypes";
 import { useNavigate,Link } from "react-router-dom";
 import logoText from '../../images/logotext.png'
 import logoimage from '../../images/logoimage.png'
+import { getPostsByPage } from "../../actions/posts";
 
 export default function Nav({user,setUser,home,setHome}){
-    // console.log(user,'is user')
+    console.log(user,'is user')
     const classes = useStyles()
     const dispatch=useDispatch()
     const navigate =useNavigate()
+    const {page} = useSelector((state)=>state.posts)
 
-    // console.log(user, 'from nav component')
+    console.log(user, 'from nav component')
 
-
+  
 
 
     return(
@@ -24,7 +26,7 @@ export default function Nav({user,setUser,home,setHome}){
             <AppBar className={classes.appBar} id ='flex-container' position="static" color="inherit">
 
 
-                <Link to="/" className={classes.brandContainer}>
+                <Link to="/" className={classes.brandContainer} onClick={()=>dispatch(getPostsByPage(1))}>
                   <img src={logoText}  alt="logo" height='70' onClick={()=>{setHome(true)}} component={Link} to="/"/>
                   <img src={logoimage} className={classes.image} alt="icon" height='50'/>
                 </Link>
