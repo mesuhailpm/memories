@@ -49,6 +49,7 @@ export const generatetoken =async(req,res)=>{
         if(existingUser) id = existingUser.id
 
         const token = await jwt.sign({email,id},secret,{expiresIn:expirationTime})
+        console.log(token,'is token')
 
         res.status(201).json({email,name,token,id})
     } catch (error) {
