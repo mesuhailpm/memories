@@ -28,7 +28,7 @@ export const signin = (credentials,navigate) => async(dispatch)=>{
     }
 
 }
-export const generateToken =(decodedData,navigate)=>async (dispacth)=>{
+export const generateToken =(decodedData,navigate)=>async (dispatch)=>{
 
     try {
         // console.log( ' is decoded data  is ',decodedData)
@@ -36,7 +36,7 @@ export const generateToken =(decodedData,navigate)=>async (dispacth)=>{
         const {data} = await api.generateToken(decodedData)
         console.log(data,'is data from backend check if tokeb is available')
 
-        dispacth({type:AUTH,payload:data})
+        dispatch({type:AUTH,payload:data})
         navigate('/')
 
         // console.log(data)
