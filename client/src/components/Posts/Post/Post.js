@@ -1,5 +1,5 @@
 import useStyles from "./styles"
-import{Card,CardActions,CardContent,CardMedia,Button,Typography, ButtonBase,} from '@mui/material'
+import{Card,CardActions,CardContent,CardMedia,Button,Typography, ButtonBase, IconButton, Menu, MenuItem,} from '@mui/material'
 // import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import {ThumbUpAlt,ThumbUpAltOutlined,Delete,MoreHoriz} from '@mui/icons-material'
 // import DeleteIcon from '@mui/icons-material/Delete'
@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux'
 import{ fetchPost,deletePost,likePost,getPostsByPage} from '../../../actions/posts'
 import {useNavigate} from 'react-router-dom'
 import moment from 'moment'
+import { useState } from "react"
 export default function Post({post,currentId,setCurrentId,user}){
 
     const classes = useStyles()
@@ -29,6 +30,32 @@ export default function Post({post,currentId,setCurrentId,user}){
     const handleLike= () =>{
         dispatch(likePost(post._id))
     }
+
+    const [anchorEl,setAnchorEl] = useState( null )
+    const handleMoreButtonClick = (e) => {
+        e.stopPropagation()
+        setAnchorEl(e.currentTarget)}
+    const handleMenuClose = () =>{
+        setAnchorEl(null)
+    }
+
+    const handleSelectEdit =(e)=>{
+        e.stopPropagation()
+        handleMenuClose()
+        setCurrentId(post._id)
+
+    }
+    const handleSelectSeeAuthor =(e)=>{
+        e.stopPropagation()
+        handleMenuClose()
+
+    }
+    const handleSelectReport =(e)=>{
+        e.stopPropagation()
+        handleMenuClose()
+
+    }
+
     const likeComponent =  post.likes.length
                 ?
                     post.likes.find(userId=> userId === user?.id )
@@ -66,7 +93,19 @@ console.log(post.likes ,' is users who liked') //test
                         <Typography variant="body2"> {moment(post.createdAt).fromNow()}  </Typography>
                     </div>
                     <div className={classes.overlay2}>
-                        {user && <Button style={{color:'white'}} size='small' onClick={(e)=>handleSelect(e)}><MoreHoriz fontSize="default" /></Button>}
+                        {/* {user && <Button style={{color:'white'}} size='small' onClick={(e)=>handleSelect(e)}><MoreHoriz fontSize="default" /></Button>} */}
+                        <IconButton style={{color:'white'}} size='small' onClick={handleMoreButtonClick}> <MoreHoriz fontSize="default" /> </IconButton>
+                        <Menu anchorEl={anchorEl}
+                              open={Boolean(anchorEl)}
+                              onClose={handleMenuClose}
+
+
+
+                            >
+                            {user && (user.id === post.creatorId) && <MenuItem onClick={handleSelectEdit}>Edit</MenuItem>}
+                            {user && <MenuItem onClick={handleSelectReport}>Report</MenuItem>}
+                            <MenuItem onClick={handleSelectSeeAuthor}>See author</MenuItem>
+                        </Menu>
 
                     </div>
                     <div className={classes.details}>

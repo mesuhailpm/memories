@@ -9,7 +9,7 @@ export default (user ={authData:{}},action)=> {
             return {...user, authData:action.payload,token:action.payload.token};
         case LOGOUT:
             localStorage.clear()
-            return {authData:null};
+            return {authData: null};
         case SETUSER:
             return {authData: JSON.parse(localStorage.getItem('profile')),token: JSON.parse(localStorage.getItem('token'))}
         default:
