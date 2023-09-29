@@ -5,18 +5,16 @@ import {ThumbUpAlt,ThumbUpAltOutlined,Delete,MoreHoriz} from '@mui/icons-materia
 // import DeleteIcon from '@mui/icons-material/Delete'
 // import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {useDispatch} from 'react-redux'
-import{ fetchPost,deletePost,likePost,getPostsByPage} from '../../../actions/posts'
+import{ fetchPost,deletePost,likePost} from '../../../actions/posts'
 import {useNavigate} from 'react-router-dom'
 import moment from 'moment'
 import { useState } from "react"
-export default function Post({post,currentId,setCurrentId,user}){
+export default function Post({post,setCurrentId,user}){
 
     const classes = useStyles()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleSelect= (e) => {
-        e.stopPropagation()
-        setCurrentId(post._id)}
+
     const handleDelete = async(e)=>{
         e.stopPropagation()
         dispatch(deletePost(post._id))
@@ -76,11 +74,6 @@ export default function Post({post,currentId,setCurrentId,user}){
                 :<Button size="small" color="primary" onClick={handleLike} disabled={!user}> <ThumbUpAltOutlined fontSize="small" />&nbsp;
                 Like
                 </Button>
-
-
-console.log(post?.creator,' is creator')//tes
-console.log(user?.id,' is userId is logged in') //test
-console.log(post.likes ,' is users who liked') //test
 
 
     return(

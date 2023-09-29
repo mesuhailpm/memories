@@ -10,13 +10,11 @@ import logoimage from '../../images/logoimage.png'
 import { getPostsByPage } from "../../actions/posts";
 
 export default function Nav({user,setUser,home,setHome}){
-    console.log(user,'is user')
     const classes = useStyles()
     const dispatch=useDispatch()
     const navigate =useNavigate()
     const {page} = useSelector((state)=>state.posts)
 
-    console.log(user, 'from nav component')
 
   
 

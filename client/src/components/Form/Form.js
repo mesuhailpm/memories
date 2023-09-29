@@ -12,8 +12,6 @@ const  Form = ({user,currentId,setCurrentId})=> {
     const currentPost= useSelector((state)=> currentId? state.posts.posts.find(post=> post._id===currentId)
                                                     : null)
 
-    console.log(currentId, ' is currentpost ID from Form component')
-    console.log(currentPost, ' is currentPost from Form component')
     const [postData,setPostData] = useState({
         title:'',
         message:'',
@@ -22,7 +20,6 @@ const  Form = ({user,currentId,setCurrentId})=> {
         selectedFile:null,
 
     })
-    console.log(postData,' is postData in current form')
     const handleSubmit = async (e)=>{
         e.preventDefault()
 
@@ -44,8 +41,7 @@ const  Form = ({user,currentId,setCurrentId})=> {
         setCurrentId(0)
     }
 
-    useEffect(()=>{if(currentPost){ setPostData(currentPost)};
-    console.log('useEffect ran inside form and changed Post Data')}
+    useEffect(()=>{if(currentPost){ setPostData(currentPost)};}
     ,[currentId,currentPost])
 
     return(

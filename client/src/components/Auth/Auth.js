@@ -18,7 +18,6 @@ export default function Auth(){
     const [signUp,setSignUp] =useState(false)
     const [formData,setFormData]= useState(initialForm)
     const [showPassword,setShowPassword] =useState(false)
-    console.log(formData, 'is formData')
 
     const classes = useStyles()
     const dispatch = useDispatch()
@@ -27,7 +26,6 @@ export default function Auth(){
     {setShowPassword(prevState=>!prevState)}
     const handleChange =(e)=>{
         setFormData( {...formData,[e.target.name]:e.target.value} )
-        console.log(formData)
 
     }
 
@@ -35,17 +33,14 @@ export default function Auth(){
     const handleSubmit=(e)=>{
         e.preventDefault()
         if(signUp){
-            console.log('will signu up using form Data', formData)
             dispatch(signup(formData,navigate))
         }else{
-            console.log('will sign in using form Data', formData)
             dispatch(signin(formData,navigate))
         }
     }
 
     const toggle=(e)=>{
         e.preventDefault()
-        console.log(signUp)
         setSignUp(prevState=>!prevState)
         setFormData(initialForm)
         setShowPassword(false)
@@ -53,12 +48,10 @@ export default function Auth(){
     const handleSuccces=async(response)=>{
         try {
             const decodedData = await jwt(response.credential)
-            console.log('generating token using ',decodedData)
             dispatch( generateToken(decodedData,navigate))
             // const {name,email,picture,sub} = decodedData
 
             // dispatch ({type:AUTH,data:decodedData})
-            console.log(response)
         } catch (error) {
             console.log(error)
 

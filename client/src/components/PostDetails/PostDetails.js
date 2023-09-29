@@ -23,7 +23,6 @@ export default function PostDetails(){
     const classes = useStyles()
     const { posts,post,isLoading,page } = useSelector((state)=> state.posts)
     const user =  useSelector ((state)=> state.user?.authData?.name)
-    console.log(post)
 
     const [comment,setComment] = useState('');
     const handleChange = async(e) =>{

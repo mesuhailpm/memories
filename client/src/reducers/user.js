@@ -3,7 +3,6 @@ import { AUTH,SETUSER,LOGOUT} from "../actionTypes";
 export default (user ={authData:{}},action)=> {
     switch (action.type) {
         case AUTH:
-            console.log('profile shpuld be set ',action.payload)
             localStorage.setItem('profile',JSON.stringify(action.payload))
             if(action.payload.token)localStorage.setItem('token',JSON.stringify(action.payload.token))
             return {...user, authData:action.payload,token:action.payload.token};

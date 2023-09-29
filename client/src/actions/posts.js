@@ -3,9 +3,7 @@ import { FETCH_ALL,FETCH_POSTS_BY_PAGE,CREATE,UPDATE,DELETE,LIKE,START_LOADING,S
 
 export const getPosts = () => async(dispatch)=>{
     try {
-        console.log('getPost action called')
         const {data} = await api.fetchPosts();
-        console.log('data is assigned to data variable; this message is from actions')
         dispatch( {type:FETCH_ALL,payload:data} )
     } catch (error) {
         console.log(error)
@@ -43,11 +41,9 @@ export const getPostsByPage = (page) => async (dispatch) => {
     }
 }
 export const getPostsBySearch = (searchQuery) => async (dispatch)=> {
-    console.log('hello ', searchQuery)
     try {
         dispatch( {type:START_LOADING})
         const {data} = await api.searchPosts(searchQuery)
-        console.log(data.data)
         dispatch ( { type:FETCH_POSTS_BY_SEARCH, payload: data.data })
         dispatch ( { type:STOP_LOADING })
 
@@ -58,7 +54,6 @@ export const getPostsBySearch = (searchQuery) => async (dispatch)=> {
     }
 }
 export const createPost = (postData) => async (dispatch)=>{
-    console.log(postData,'from actions')
     try {
         const {data} = await api.createPost(postData)
         dispatch({type:CREATE,payload:data})
@@ -102,8 +97,7 @@ export const commentPost = (id,comment) => async (dispatch) =>{
 }
 export const deletePost = (idToDelete) => async(dispatch)=>{
     try {
-        const {data} = await api.deletePost(idToDelete)
-        console.log(data,'is the data after tried to delete')
+        await api.deletePost(idToDelete)
         dispatch({type:DELETE, payload: idToDelete})
     } catch (error) {
         console.log(error)
