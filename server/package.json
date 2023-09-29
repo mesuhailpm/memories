@@ -6,6 +6,10 @@
   "engines": {
     "node": "18.x"
   },
+  "comments": [
+    "added engines object to make it feasible to be deployed into Vercel",
+    "as per 29 SEP 2023 node version supporte was 16 and 18. I choose 18"
+  ],
   "type": "module",
   "scripts": {
     "start": "nodemon index.js"
