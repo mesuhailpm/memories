@@ -1,16 +1,28 @@
 using this branch to deploy into vercel
-Implememntation of my Memories app
+Implementation of my Memories app
+
+
+29 SEP 2023
+
+This contains my server and client for Memories App. Client and server needs to be deployed to the Vercel separately.
+
+## Trying to improve UI along with
+> Removing testing console.log(s)
+> Removing unnecessary borders added for testing
+
+
+
 
 
 Need fixes.
 ## Like button
 First like after a refresh (currently no limit for like) is not reflecting on view
 
-added a async await in handleLike seems it sorted
+added an async await in handleLike seems it sorted
 
 ## Updates
 changes to post/memory not reflecting always on the view
-DEleting was not updating. solution removed dispath(getPosts()) inside handleDelete function
+Deleting was not updating. update: added a solution - removed dispatch(getPosts()) inside handleDelete function
 
 ## Lastly
 i have three branchs in my local project
