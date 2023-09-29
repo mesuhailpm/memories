@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API = axios.create({baseURL:'https://memories-dun.vercel.app'});
+const API = axios.create({baseURL: process.env.PUPLIC_API_ENDPOINT || 'http://localhost:3001'})
+   // for vercel  'https://memories-dun.vercel.app'});
 API.interceptors.request.use((req)=>{
   req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('token'))}`
   return req
