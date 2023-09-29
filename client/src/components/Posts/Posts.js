@@ -14,7 +14,7 @@ export default function Posts({user,setCurrentId}){
             <CircularProgress />
             :<Grid container   alignItems='stretch' spacing ={3}>
                 {posts.map((post)=>(
-                    <Grid item key={post._id} xs={12} sm ={6} md={6} lg = {3} raised elevation={6} >
+                    <Grid item key={post._id} xs={12} sm ={6} md={6} lg = {3} raised="true" elevation={6} >
                         <Post
                         post={post}
                         setCurrentId={setCurrentId}
