@@ -1,5 +1,5 @@
 import * as api from '../api/index'
-import { AUTH,LOGIN,LOGOUT } from '../actionTypes'
+import { AUTH } from '../actionTypes'
 
 export const signup = (credentials,navigate) => async(dispatch)=>{
     try {
