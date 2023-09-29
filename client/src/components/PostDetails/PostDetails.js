@@ -71,7 +71,7 @@ export default function PostDetails(){
                     <ArrowBackIcon fontSize="large" color="secondary"/>
                 </IconButton>
 
-                    <Typography variant="h2" className={classes.test} component='h3'>{post.title}</Typography>
+                    <Typography variant="h2" component='h3'>{post.title}</Typography>
                     <Typography gutterBottom>{post.tags.map((tag)=>`#${tag} `)}</Typography>
                     <Typography variant="h4" > By: {post.creator}</Typography>
                     <Typography variant="subtitle1" gutterBottom>{moment(post.createdAt).fromNow()}</Typography>
